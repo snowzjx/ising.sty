@@ -1,0 +1,115 @@
+\usepackage{booktabs}
+\usepackage{xspace}
+\usepackage{xparse}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{url}
+
+% Parab
+\newcommand{\paraspace}{\vspace{0.05in}}
+\newcommand{\parab}[1]{\paraspace\noindent{\bf #1} }
+
+% icompact
+\newenvironment{icompact}{
+  \begin{list}{$\bullet$}{
+    \parsep 1pt plus 1pt
+    \partopsep 1pt plus 1pt
+    \topsep 1pt plus 2pt minus 1pt
+    \itemsep 1.5pt plus 1pt
+    \parskip 0pt plus 2pt
+    \leftmargin 0.15in}
+       }
+  {\normalsize\end{list}}
+
+\newenvironment{ecompact}{
+  \begin{list}{$\bullet$}{
+    \parsep 1pt plus 1pt
+    \partopsep 1pt plus 1pt
+    \topsep 1pt plus 2pt minus 1pt
+    \itemsep 1.5pt plus 1pt
+    \parskip 0pt plus 2pt
+    \leftmargin 0.15in}
+       }
+  {\normalsize\end{list}}
+
+% listing style
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=C,
+  aboveskip=1mm,
+  belowskip=1mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\scriptsize\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+% tabularx column type
+\newcolumntype{b}{>{\hsize=.85\hsize}X}
+\newcolumntype{q}{>{\hsize=.6\hsize}X}
+\newcolumntype{m}{>{\hsize=.5\hsize}X}
+\newcolumntype{d}{>{\hsize=.45\hsize}X}
+\newcolumntype{w}{>{\hsize=.3\hsize}X}
+\newcolumntype{s}{>{\hsize=.25\hsize}X}
+\newcolumntype{g}{>{\hsize=.17\hsize}X}
+\newcolumntype{x}{>{\hsize=.15\hsize}X}
+
+% auto highlight
+\newcommand{\highlight}[1]{
+\if\submission1
+{\color{red}#1}
+\else
+#1
+\fi
+}
+
+% \eg, \etc, \ie
+\makeatletter
+\DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
+\def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
+\def\eg{\emph{e.g}\onedot}
+\def\ie{\emph{i.e}\onedot}
+\def\etc{\emph{etc}\onedot}
+\makeatother
+
+% appendix figure
+\makeatletter
+\DeclareDocumentEnvironment{appendixfig}{}{
+   \par\medskip\noindent
+   \begin{minipage}{\linewidth}
+   \def\@captype{figure}
+   \centering
+}
+{
+\end{minipage}
+\par\bigskip
+}
+\makeatother
+
+% calculate page difference
+\newcommand{\pagedifference}[2]{%
+  \number\numexpr\getpagerefnumber{#2}-\getpagerefnumber{#1} + 1\relax}
+
+% Change caption vspace
+\setlength{\abovecaptionskip}{10pt plus 2pt minus 2pt} 
+\setlength{\belowcaptionskip}{-10pt plus 2pt minus 2pt}
+
+% Change section subsection vspace
+\titlespacing*{\section}
+{0pt}{15pt plus 2pt minus 2pt}{8pt plus 2pt minus 2pt}
+
+\titlespacing*{\subsection}
+{0pt}{10pt plus 2pt minus 2pt}{6pt plus 2pt minus 2pt}
+
+\def\UrlBreaks{\do\/\do-}
