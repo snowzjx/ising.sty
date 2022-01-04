@@ -1,14 +1,13 @@
 \usepackage{booktabs}
 \usepackage{xspace}
 \usepackage{xparse}
-\usepackage{xcolor}
 \usepackage{listings}
 \usepackage{tabularx}
 \usepackage{titlesec}
 \usepackage{url}
 
-% Parab
-\newcommand{\paraspace}{\vspace{0.05in}}
+% parab
+\newcommand{\paraspace}{\vspace{0.04in}}
 \newcommand{\parab}[1]{\paraspace\noindent{\bf #1} }
 
 % icompact
@@ -66,9 +65,9 @@
 \newcolumntype{x}{>{\hsize=.15\hsize}X}
 
 % auto highlight
-\newcommand{\highlight}[1]{
-\if\submission1
-{\color{red}#1}
+\newcommand{\highlight}[1]{%
+\if\submission1%
+{\color{red}#1}%
 \else
 #1
 \fi
@@ -97,19 +96,49 @@
 }
 \makeatother
 
-% calculate page difference
+% appendix table
+\makeatletter
+\DeclareDocumentEnvironment{appendixtab}{}{
+   \par\medskip\noindent
+   \begin{minipage}{\linewidth}
+   \def\@captype{table}
+   \centering
+}
+{
+\end{minipage}
+\par\bigskip
+}
+\makeatother
+
+% Calculate page difference
 \newcommand{\pagedifference}[2]{%
   \number\numexpr\getpagerefnumber{#2}-\getpagerefnumber{#1} + 1\relax}
 
 % Change caption vspace
-\setlength{\abovecaptionskip}{10pt plus 2pt minus 2pt} 
-\setlength{\belowcaptionskip}{-10pt plus 2pt minus 2pt}
+%\setlength{\abovecaptionskip}{10pt plus 2pt minus 2pt} 
+%\setlength{\belowcaptionskip}{-10pt plus 2pt minus 2pt}
+
+\captionsetup[table]{aboveskip=5pt plus 2pt minus 2pt}
+\captionsetup[table]{belowskip=0pt plus 2pt minus 2pt}
+
+\captionsetup[figure]{aboveskip=0pt plus 2pt minus 2pt}
+\captionsetup[figure]{belowskip=-14pt plus 2pt minus 2pt}
+
+\captionsetup[subfigure]{aboveskip=0pt plus 2pt minus 2pt}
+\captionsetup[subfigure]{belowskip=0pt plus 2pt minus 2pt}
+
+\captionsetup[lstlisting]{aboveskip=-2pt plus 2pt minus 2pt}
+\captionsetup[lstlisting]{belowskip=0pt plus 2pt minus 2pt}
 
 % Change section subsection vspace
 \titlespacing*{\section}
-{0pt}{15pt plus 2pt minus 2pt}{8pt plus 2pt minus 2pt}
+{0pt}{8pt plus 2pt minus 2pt}{4pt plus 2pt minus 2pt}
 
 \titlespacing*{\subsection}
-{0pt}{10pt plus 2pt minus 2pt}{6pt plus 2pt minus 2pt}
+{0pt}{6pt plus 2pt minus 2pt}{2pt plus 2pt minus 2pt}
 
+\titlespacing*{\subsubsection}
+{0pt}{4pt plus 2pt minus 2pt}{2pt plus 2pt minus 2pt}
+
+% Url break
 \def\UrlBreaks{\do\/\do-}
