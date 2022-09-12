@@ -1,6 +1,7 @@
 \usepackage{booktabs}
 \usepackage{xspace}
 \usepackage{xparse}
+\usepackage{xcolor}
 \usepackage{listings}
 \usepackage{tabularx}
 \usepackage{titlesec}
@@ -8,22 +9,11 @@
 \usepackage{caption}
 
 % parab
-\newcommand{\paraspace}{\vspace{0.04in}}
+\newcommand{\paraspace}{\vspace{0.03in}}
 \newcommand{\parab}[1]{\paraspace\noindent{\bf #1} }
 
 % icompact
 \newenvironment{icompact}{
-  \begin{list}{$\bullet$}{
-    \parsep 1pt plus 1pt
-    \partopsep 1pt plus 1pt
-    \topsep 1pt plus 2pt minus 1pt
-    \itemsep 1.5pt plus 1pt
-    \parskip 0pt plus 2pt
-    \leftmargin 0.15in}
-       }
-  {\normalsize\end{list}}
-
-\newenvironment{ecompact}{
   \begin{list}{$\bullet$}{
     \parsep 1pt plus 1pt
     \partopsep 1pt plus 1pt
@@ -67,10 +57,17 @@
 
 % auto highlight
 \newcommand{\highlight}[1]{%
-\if\submission1%
+\if\submission0%
 {\color{red}#1}%
 \else
 #1
+\fi
+}
+
+\newcommand{\appendixrelated}[1]{%
+\if\allowappendix1%
+#1
+\else
 \fi
 }
 
@@ -118,29 +115,106 @@
 
 % Change caption vspace
 \captionsetup[table]{aboveskip=2pt plus 2pt minus 2pt}
-\captionsetup[table]{belowskip=-15pt plus 2pt minus 2pt}
+\captionsetup[table]{belowskip=-21pt plus 0pt minus 0pt}
 
 \captionsetup[table*]{aboveskip=2pt plus 2pt minus 2pt}
-\captionsetup[table*]{belowskip=-10pt plus 2pt minus 2pt}
+\captionsetup[table*]{belowskip=-18pt plus 0pt minus 0pt}
 
 \captionsetup[figure]{aboveskip=2pt plus 2pt minus 2pt}
-\captionsetup[figure]{belowskip=-15pt plus 2pt minus 2pt}
+\captionsetup[figure]{belowskip=-20pt plus 0pt minus 0pt}
+
+\captionsetup[figure*]{aboveskip=2pt plus 2pt minus 2pt}
+\captionsetup[figure*]{belowskip=-16pt plus 0pt minus 0pt}
 
 \captionsetup[subfigure]{aboveskip=0pt plus 2pt minus 2pt}
-\captionsetup[subfigure]{belowskip=0pt plus 2pt minus 2pt}
+\captionsetup[subfigure]{belowskip=0pt plus 0pt minus 0pt}
 
 \captionsetup[lstlisting]{aboveskip=2pt plus 2pt minus 2pt}
-\captionsetup[lstlisting]{belowskip=0pt plus 2pt minus 2pt}
+\captionsetup[lstlisting]{belowskip=0pt plus 0pt minus 0pt}
 
 % Change section subsection vspace
 \titlespacing*{\section}
-{0pt}{6pt plus 2pt minus 2pt}{2pt plus 2pt minus 2pt}
+{0pt}{3pt plus 0pt minus 1pt}{2pt plus 0pt minus 1pt}
 
 \titlespacing*{\subsection}
-{0pt}{4pt plus 2pt minus 2pt}{1pt plus 2pt minus 2pt}
+{0pt}{2pt plus 0pt minus 1pt}{2pt plus 0pt minus 1pt}
 
 \titlespacing*{\subsubsection}
-{0pt}{3pt plus 2pt minus 2pt}{1pt plus 2pt minus 2pt}
+{0pt}{2pt plus 0pt minus 1pt}{1pt plus 0pt minus 0pt}
 
-% Url break
-\def\UrlBreaks{\do\/\do-}
+% Citation ref
+\newcommand*{\figref}[2][]{%
+  \hyperref[{#2}]{%
+    Figure~\ref*{#2}%
+    \ifx\\#1\\%
+    \else
+      \,#1%
+    \fi
+  }%
+}
+  
+\newcommand*{\tabref}[2][]{%
+  \hyperref[{#2}]{%
+    Table~\ref*{#2}%
+    \ifx\\#1\\%
+    \else
+      \,#1%
+    \fi
+  }%
+}
+  
+\newcommand*{\equref}[2][]{%
+  \hyperref[{#2}]{%
+    Equation~\ref*{#2}%
+    \ifx\\#1\\%
+    \else
+      \,#1%
+    \fi
+  }%
+}
+
+\newcommand*{\secref}[2][]{%
+  \hyperref[{#2}]{%
+    \S\ref*{#2}%
+    \ifx\\#1\\%
+    \else
+      \,#1%
+    \fi
+  }%
+}
+
+\newcommand*{\algref}[2][]{%
+  \hyperref[{#2}]{%
+    Algorithm~\ref*{#2}%
+    \ifx\\#1\\%
+    \else
+      \,#1%
+    \fi
+  }%
+}
+
+\newcommand*{\appref}[2][]{%
+  \hyperref[{#2}]{%
+    Appendix~\ref*{#2}%
+    \ifx\\#1\\%
+    \else
+      \,#1%
+    \fi
+  }%
+}
+
+\newcommand*{\lstref}[2][]{%
+  \hyperref[{#2}]{%
+    Listing~\ref*{#2}%
+    \ifx\\#1\\%
+    \else
+      \,#1%
+    \fi
+  }%
+}
+
+% URL Break
+\def\UrlBigBreaks{\do\/\do-\do:}
+
+% Default Values
+\def\submission{0}
